@@ -204,3 +204,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 10/35: feat(server): create api/v1/health check endpoint
 
 - MediSync Phase 1 Milestone 11/35: feat(server): implement global error handling middleware
+
+- MediSync Phase 1 Milestone 12/35: feat(server): configure server.js entrypoint with port listening logic
