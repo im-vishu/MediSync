@@ -240,3 +240,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 28/35: test: implement backend health check integration test
 
 - MediSync Phase 1 Milestone 29/35: test: verify Docker container connectivity for PostgreSQL
+
+- MediSync Phase 1 Milestone 30/35: build(migrations): generate initial Prisma migration baseline
