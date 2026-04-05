@@ -190,3 +190,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 3/35: build(infra): set up health checks and persistence for database container
 
 - MediSync Phase 1 Milestone 4/35: feat(server): initialize Express.js application structure
+
+- MediSync Phase 1 Milestone 5/35: feat(server): implement centralized environment configuration in env.js
