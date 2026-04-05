@@ -192,3 +192,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 4/35: feat(server): initialize Express.js application structure
 
 - MediSync Phase 1 Milestone 5/35: feat(server): implement centralized environment configuration in env.js
+
+- MediSync Phase 1 Milestone 6/35: feat(server): integrate helmet and cors for initial security hardening
