@@ -236,3 +236,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 26/35: chore(client): optimize asset directory and public folder structure
 
 - MediSync Phase 1 Milestone 27/35: feat(client): add global styles and Tailwind base configurations
+
+- MediSync Phase 1 Milestone 28/35: test: implement backend health check integration test
