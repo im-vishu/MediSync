@@ -244,3 +244,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 30/35: build(migrations): generate initial Prisma migration baseline
 
 - MediSync Phase 1 Milestone 31/35: feat(client): implement navigation bar with responsive mobile menu
+
+- MediSync Phase 1 Milestone 32/35: feat(client): add shadcn-ui inspired layout components
