@@ -260,3 +260,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Identity Milestone 3/10: feat(server): create POST /v1/auth/register for Patient onboarding
 
 - MediSync Identity Milestone 4/10: feat(server): implement Doctor registration with specialization validation
+
+- MediSync Identity Milestone 5/10: feat(server): implement POST /v1/auth/login with JWT sign/verify logic
