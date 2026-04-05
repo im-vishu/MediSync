@@ -200,3 +200,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 8/35: build(server): initialize Prisma ORM with PostgreSQL provider
 
 - MediSync Phase 1 Milestone 9/35: feat(server): define initial schema.prisma for Appointment Booking
+
+- MediSync Phase 1 Milestone 10/35: feat(server): create api/v1/health check endpoint
