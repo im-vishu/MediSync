@@ -1,4 +1,4 @@
-# MediSync
+# MediSync - Docter Appointment Booking System
 
 **MediSync** is a full-stack healthcare platform template with robust role-based authentication, user registration for patients/doctors/admin, secure JWT authentication, and a modern frontend-backend codebase with PostgreSQL and Prisma ORM.
 
