@@ -186,3 +186,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 1/35: chore: initialize MediSync monorepo workspace
 
 - MediSync Phase 1 Milestone 2/35: build(infra): configure PostgreSQL service in docker-compose.yml
+
+- MediSync Phase 1 Milestone 3/35: build(infra): set up health checks and persistence for database container
