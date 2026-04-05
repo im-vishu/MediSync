@@ -1,8 +1,11 @@
 import { Router } from "express";
+import authRoutes from "./auth.js";
 import { PrismaClient } from "@prisma/client";
 
 const router = Router();
 const prisma = new PrismaClient();
+
+router.use("/auth", authRoutes);
 
 router.get("/health", async (_req, res) => {
   try {
