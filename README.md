@@ -183,3 +183,4 @@ JWT_SECRET=your_secret_key_here
 **Vishant Chaudhary**
 
 [![GitHub](https://img.shields.io/badge/GitHub-vishantchaudhary-181717?logo=github)](https://github.com/vishantchaudhary)
+- MediSync Phase 1 Milestone 1/35: chore: initialize MediSync monorepo workspace

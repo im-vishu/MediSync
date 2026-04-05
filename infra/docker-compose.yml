@@ -1,0 +1,16 @@
+services:
+  medisync-postgres:
+    image: postgres:16
+    container_name: medisync-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: medisync_user
+      POSTGRES_PASSWORD: medisync_pass
+      POSTGRES_DB: medisync_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - medisync_pg_data:/var/lib/postgresql/data
+
+volumes:
+  medisync_pg_data:
