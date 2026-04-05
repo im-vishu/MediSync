@@ -230,3 +230,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 23/35: build(root): add workspace management in root package.json
 
 - MediSync Phase 1 Milestone 24/35: feat(server): implement database connection retry logic
+
+- MediSync Phase 1 Milestone 25/35: feat(server): add prisma client generation scripts
