@@ -254,3 +254,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 35/35: docs: finalize setup guide and environment variable documentation
 
 - MediSync Identity Milestone 1/10: feat(server): define Patient and Doctor models with RBAC roles in Prisma
+
+- MediSync Identity Milestone 2/10: feat(server): implement password hashing with bcrypt in auth controller
