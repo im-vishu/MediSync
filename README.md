@@ -268,3 +268,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Identity Milestone 7/10: feat(server): implement GET /v1/auth/me for session verification
 
 - MediSync Identity Milestone 8/10: refactor(server): add conflict detection for duplicate email registration (409)
+
+- MediSync Identity Milestone 9/10: security(middleware): implement protect and restrictTo RBAC middleware
