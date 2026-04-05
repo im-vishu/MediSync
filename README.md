@@ -270,3 +270,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Identity Milestone 8/10: refactor(server): add conflict detection for duplicate email registration (409)
 
 - MediSync Identity Milestone 9/10: security(middleware): implement protect and restrictTo RBAC middleware
+
+- MediSync Identity Milestone 10/10: test(auth): verify registration and login flows for Patient/Doctor roles
