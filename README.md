@@ -216,3 +216,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 16/35: feat(client): configure Tailwind PostCSS and Autoprefixer integration
 
 - MediSync Phase 1 Milestone 17/35: feat(client): set up VITE_API_URL environment mapping
+
+- MediSync Phase 1 Milestone 18/35: feat(client): implement basic API fetching service utility
