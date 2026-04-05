@@ -248,3 +248,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 32/35: feat(client): add shadcn-ui inspired layout components
 
 - MediSync Phase 1 Milestone 33/35: chore: configure .gitignore for monorepo (node_modules, env, dist)
+
+- MediSync Phase 1 Milestone 34/35: docs: initialize README.md with MediSync Phase 1 architecture
