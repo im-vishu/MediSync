@@ -198,3 +198,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 7/35: feat(server): set up morgan logger and standardized middleware stack
 
 - MediSync Phase 1 Milestone 8/35: build(server): initialize Prisma ORM with PostgreSQL provider
+
+- MediSync Phase 1 Milestone 9/35: feat(server): define initial schema.prisma for Appointment Booking
