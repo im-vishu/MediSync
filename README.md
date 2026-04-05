@@ -226,3 +226,5 @@ JWT_SECRET=your_secret_key_here
 - MediSync Phase 1 Milestone 21/35: feat(client): implement client-side routing architecture
 
 - MediSync Phase 1 Milestone 22/35: build(root): configure monorepo scripts for concurrent development
+
+- MediSync Phase 1 Milestone 23/35: build(root): add workspace management in root package.json
