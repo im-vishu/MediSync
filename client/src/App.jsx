@@ -1,14 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import AppRoutes from "./routes/AppRoutes";
+import Layout from "./components/Layout";
 
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-gray-100">
+        <Layout>
           <AppRoutes />
-        </div>
+        </Layout>
       </BrowserRouter>
     </AuthProvider>
   );
