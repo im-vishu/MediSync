@@ -240,3 +240,5 @@ PRs, feedback, and enhancements welcome!
 - MediSync Booking Milestone 3/10: feat(server): implement POST /v1/slots for Doctor availability management
 
 - MediSync Booking Milestone 4/10: feat(server): implement GET /v1/slots/mine for personal Doctor schedules
+
+- MediSync Booking Milestone 5/10: feat(server): implement GET /v1/slots/doctor/:id for Patient discovery
