@@ -1,212 +1,228 @@
-# 🩺 MediSync - Doctor Appointment Booking System
+# 🩺 MediSync — Doctor Appointment Booking System
 
-A modern, scalable, and secure doctor appointment booking platform for clinics, hospitals, and healthcare providers.  
-MediSync connects patients, doctors, and administrators in real time for seamless scheduling, efficient practice management, and improved patient outcomes.
-
----
-
-## ✨ Features
-
-- 👤 **Patient Portal:**  
-  - 📝 Self-service registration, profile, and medical history  
-  - 🔎 Real-time search for doctors by specialty, rating, or availability  
-  - 📅 Instant appointment booking and calendar management  
-  - 🔔 Appointment reminders and notifications (email/SMS)
-
-- 👨‍⚕️ **Doctor Portal:**  
-  - 🕑 Manage available slots, see patient bookings, and view history  
-  - ✅ Approve or cancel requests, patient messaging, live schedule updates
-
-- 🛡️ **Admin Dashboard:**  
-  - 🗂️ Manage users, approve/reject doctors, view analytics & reports  
-  - 🔐 Role-based access to sensitive features and settings
-
-- 🔒 **Security:**  
-  - 🛡️ Secure JWT authentication and refresh tokens  
-  - 🚦 Rate limiting, input validation, encrypted data
-
-- 📱 **Responsive Design:**  
-  - ⚡ Fast & mobile-friendly SPA (React + Tailwind)  
-  - 📲 PWA-ready for installable apps
+MediSync is a production-grade doctor appointment booking platform built for clinics and hospitals.  
+Designed with robust security, scalable architecture, clean modular code, and a modern developer experience.
 
 ---
 
-## 🚀 Tech Stack
+## ✨ Key Features
 
-### 🖥️ Frontend:
-- React 18+ with TypeScript
-- Vite (build tool)
-- Tailwind CSS
+- 🧑‍⚕️ Role-based portals for Admin, Doctor, and Patient
+- 📅 Real-time slot/appointment booking & doctor schedules
+- 🔑 Secure JWT authentication (access + refresh)
+- 💾 Durable database storage (PostgreSQL or MongoDB)
+- 🚦 Redis-powered caching (performance & sessions)
+- 📬 Email/SMS notifications (pluggable providers)
+- 📱 Fully responsive, mobile-ready SPA frontend
+- 🧑‍🔬 Automated CI for test, lint, build, and deployment
+- 🔒 Secret and code scanning in CI/CD pipelines
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+- React 18+ (with TypeScript)
+- Vite (lightning-fast build/dev)
+- Tailwind CSS (utility-first styling)
 - React Router v6+
-- React Query (for API state management, recommended)
-- Axios (for HTTP requests)
-- Zod (schema validation)
-- Jest & React Testing Library (unit/integration tests)
-- Storybook (UI development, optional)
+- Axios or React Query (API state/fetch)
+- Jest + React Testing Library
+- Storybook (component-driven UI, optional)
 
-### 🖲️ Backend:
-- Node.js & Express.js
-- TypeScript (maintainability/robustness)
-- MongoDB & Mongoose ORM
+### Backend
+- Node.js with Express.js (TypeScript recommended)
+- PostgreSQL or MongoDB database
+- Redis (caching, session, queue)
+- JWT & refresh tokens with RBAC
+- Nodemailer (email), Twilio (SMS, optional)
+- Winston or Pino (structured logging)
 - Joi or Zod (input validation)
-- JWT (authentication)
-- Socket.io (optional real-time features)
-- Winston or Pino (logging)
-- Nodemailer (transactional email)
-- Jest (backend testing)
+- Jest (testing)
 
-### ☁️ Deployment & Ops:
-- Docker 🐳
-- GitHub Actions for CI/CD
-- Cloud ready: AWS, GCP, Azure, or your favorite provider ☁️
+### DevOps & Quality
+- Docker and docker-compose for service orchestration
+- GitHub Actions (CI/CD: lint, type, migrate, test, deploy)
+- Environment variable/secrets management
+- API docs via Swagger/OpenAPI
+- Prettier, ESLint formatting
+- Gitleaks secret scanning
 
 ---
 
 ## 🗂️ Project Structure
 
-```
+```text
 medisync-doctor-appointment-booking-system/
+├─ .github/
+│  └─ workflows/
+│     ├─ ci.yml            # CI: lint, test, scan, migrate
+│     └─ deploy.yml        # Deploy and healthcheck
+├─ docs/                   # Docs and screenshots
 │
-├── .github/               # Workflows, issue/PR templates
-├── docs/                  # Documentation and screenshots
-├── server/                # Backend (Express)
-│   ├── src/
-│   │   ├── api/
-│   │   ├── config/
-│   │   ├── middleware/
-│   │   ├── models/
-│   │   ├── services/
-│   │   ├── utils/
-│   │   ├── validation/
-│   │   ├── app.js
-│   │   └── server.js
-│   ├── tests/
-│   ├── package.json
-│   └── .env.example
-├── client/                # Frontend (React)
-│   ├── public/
-│   ├── src/
-│   ├── tests/
-│   ├── package.json
-│   └── .env.example
-├── docker/                # Docker-compose & Dockerfiles
-├── scripts/               # Deployment, seed, or setup scripts
-├── .env.example
-├── .gitignore
-├── README.md
-├── LICENSE
-└── package.json
+├─ server/
+│  ├─ src/
+│  │  ├─ api/              # Route/controllers
+│  │  ├─ config/           # Env, DB, CORS configs
+│  │  ├─ middleware/
+│  │  ├─ models/           # ORM/ODM schemas
+│  │  ├─ services/         # Business logic, emails, slots
+│  │  ├─ utils/            # Helpers
+│  │  ├─ validation/       # Input validation
+│  │  ├─ app.ts            # Express app setup
+│  │  └─ server.ts         # App entrypoint
+│  ├─ tests/               # Unit/integration tests
+│  ├─ package.json
+│  └─ .env.example
+│
+├─ client/
+│  ├─ public/
+│  ├─ src/
+│  │  ├─ api/
+│  │  ├─ assets/
+│  │  ├─ components/
+│  │  ├─ context/
+│  │  ├─ hooks/
+│  │  ├─ pages/
+│  │  ├─ routes/
+│  │  ├─ styles/
+│  │  └─ utils/
+│  ├─ tests/
+│  ├─ package.json
+│  └─ .env.example
+│
+├─ docker/                 # Docker-compose & service configs
+├─ scripts/                # Seed/setup/deploy scripts
+├─ .env.example            # Root env example (if monorepo)
+├─ README.md
+├─ LICENSE
+└─ package.json            # Monorepo/dev scripts (optional)
 ```
+
+> This layout is modular, scalable, and matches production best practices as the project grows.
 
 ---
 
-## 🏁 Getting Started
+## ⚙️ Environment Variables
 
-### 1️⃣ Clone the repository
-```sh
-git clone https://github.com/YOUR_ORG/medisync-doctor-appointment-booking-system.git
-cd medisync-doctor-appointment-booking-system
-```
+Copy and edit `.env.example` as `.env` for both server and client.
 
-### 2️⃣ Install dependencies
-```sh
-# For monorepo
-npm install
-# Or separately:
-cd server && npm install
-cd ../client && npm install
-```
-
-### 3️⃣ Setup environment variables
-
-Copy `.env.example` to `.env` in both server and client folders; update credentials.
-
-**Example for `server/.env.example`:**
-```
+**Example: `server/.env.example`**
+```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/medisync
-JWT_SECRET=your_jwt_secret
-JWT_REFRESH_SECRET=another_long_secret
-EMAIL_HOST=smtp.example.com
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=medisync
+DB_PASS=medisync
+DB_NAME=medisync
+JWT_SECRET=super-long-secret
+JWT_REFRESH_SECRET=another-secret
+REDIS_URL=redis://localhost:6379/0
+EMAIL_HOST=smtp.mail.com
 EMAIL_PORT=587
-EMAIL_USER=user@example.com
-EMAIL_PASS=securepass
+EMAIL_USER=service@mail.com
+EMAIL_PASS=yourpassword
+FRONTEND_URL=http://localhost:5173
 ```
 
-**Example for `client/.env.example`:**
-```
+**Example: `client/.env.example`**
+```env
 VITE_API_URL=http://localhost:5000/api/v1
 ```
 
-### 4️⃣ Run servers (dev mode)
-From the root (monorepo):
-```sh
+---
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/im-vishu/medisync-doctor-appointment-booking-system.git
+cd medisync-doctor-appointment-booking-system
+npm install
+cp server/.env.example server/.env
+cp client/.env.example client/.env
 npm run dev
-# Or:
-cd server && npm run dev
-cd ../client && npm run dev
 ```
-- UI: `http://localhost:5173/`
-- API: `http://localhost:5000/`
+
+- Frontend: http://localhost:5173/
+- API: http://localhost:5000/
 
 ---
 
-## 🧑‍💻 Development & Testing
+## ✅ Development Commands
 
-- `npm run dev` – backend or frontend watch mode  
-- `npm run test` – unit/integration tests  
-- Auto-format/ESLint with Prettier  
-- API docs at `/api/docs` (Swagger UI)
+```bash
+# Lint & format
+npm run lint
+npm run format
 
----
+# Backend tests
+cd server && npm run test
 
-## 📸 Screenshots
+# Frontend tests
+cd client && npm run test
 
-Store images in `/docs` and link here.  
-Examples:  
-![Landing page](/docs/demo_landing.png)
-![Doctor portal](/docs/demo_doctor.png)
-![Admin analytics](/docs/demo_admin_dashboard.png)
+# Type checks (TypeScript)
+npm run typecheck
 
----
-
-## 📦 Deployment
-
-### 🐳 Docker
-
-To run everything in containers:
-```sh
-docker-compose up --build
+# Run migrations (if using SQL)
+npm run migrate
 ```
-Edit `docker-compose.yml` for Mongo, SMTP, and proxy configs.
-
-### ☁️ Cloud
-
-Deployable on AWS, GCP, Azure; see `/scripts` for deploy examples.
 
 ---
 
-## 🛡️ Security & Best Practices
+## 🔄 CI/CD
 
-- 🔑 **Never** commit real secrets; use env files & CI/CD secrets!
-- All passwords & JWTs are encrypted & validated
-- API input validation and RBAC throughout
-- Use HTTPS in production 🚦
+### CI (`.github/workflows/ci.yml`)
+- Secret/code scan (Gitleaks)
+- Start database/Redis services
+- Lint, format, typecheck, migrate, and test with coverage
+- API docs deployment
+
+### Deploy (`.github/workflows/deploy.yml`)
+- Trigger on push to `main`
+- Runs deploy steps
+- Health/readiness check on deploy (`/api/v1/ready`)
+
+---
+
+## 🩺 Health Endpoints
+
+- `GET /api/v1/health` — server up check
+- `GET /api/v1/ready` — DB/Redis dependencies ready
+
+---
+
+## 🔐 Required GitHub Secrets
+
+- Cloud provider credentials (deployment)
+- Healthcheck URL
+- Gitleaks and CI secrets as needed
+
+---
+
+## 🏷️ Versioning
+
+```bash
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+- Semantic versioning — bump version for each release.
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests & issues welcome!  
-See CONTRIBUTING.md and open a discussion/issue before large PRs.
+1. Branch from `main` (feature/your-feature)
+2. Keep commits focused and atomic
+3. Open PR with clear title/description
+4. Ensure all CI checks pass before merge
 
 ---
 
 ## 📄 License
 
-MIT
+MIT. See `LICENSE` file.
 
 ---
 
-_MediSync Doctor Appointment Booking System_  
-_© 2026 im-vishu and contributors_
+_MediSync © 2026 im-vishu and contributors_
