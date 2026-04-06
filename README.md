@@ -254,3 +254,5 @@ PRs, feedback, and enhancements welcome!
 - MediSync Booking Milestone 10/10: docs: finalize README.md with Phase 3 architecture and Scheduling roadmap
 
 - MediSync Governance Milestone 1/3: feat(server): implement Admin-only Doctor Approval and rejection logic
+
+- MediSync Governance Milestone 2/3: feat(api): implement Appointment lifecycle (Confirm/Cancel/Complete) with status transitions
