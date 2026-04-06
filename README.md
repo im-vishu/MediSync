@@ -256,3 +256,5 @@ PRs, feedback, and enhancements welcome!
 - MediSync Governance Milestone 1/3: feat(server): implement Admin-only Doctor Approval and rejection logic
 
 - MediSync Governance Milestone 2/3: feat(api): implement Appointment lifecycle (Confirm/Cancel/Complete) with status transitions
+
+- MediSync Governance Milestone 3/3: docs: finalize Phase 4 manifest and update README with Admin Dashboard specs
