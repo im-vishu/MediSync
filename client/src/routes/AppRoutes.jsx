@@ -4,6 +4,9 @@ import DoctorDashboard from "../components/Dashboard/DoctorDashboard";
 import PatientDashboard from "../components/Dashboard/PatientDashboard";
 import Profile from "../components/Dashboard/Profile";
 import RoleRoute from "../components/RoleRoute";
+import Login from "../components/Login";
+import Register from "../components/Register";
+import Home from "../components/Home";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +22,9 @@ export default function AppRoutes() {
       } />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<Navigate to="/profile" />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   );
 }
