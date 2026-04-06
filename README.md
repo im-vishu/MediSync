@@ -1,6 +1,28 @@
-# MediSync - Docter Appointment Booking System
+# MediSync — Doctor Appointment Booking Platform
 
-**MediSync** is a full-stack healthcare platform template with robust role-based authentication, user registration for patients/doctors/admin, secure JWT authentication, and a modern frontend-backend codebase with PostgreSQL and Prisma ORM.
+## About
+
+MediSync is a full-stack doctor appointment booking system that connects patients with healthcare providers. It enables real-time slot booking, robust role-based access control (Patient/Doctor/Admin), and secure JWT authentication for seamless and secure medical management.
+
+---
+
+## 🚦 Project Status
+
+**Phase 3 Complete!**
+
+- [x] Frontend and backend boilerplate in place (React, Node.js/Express, Prisma)
+- [x] Database models and migrations applied (User, Doctor, Specialization, Slot, Appointment, HealthCheck)
+- [x] User authentication & role-based access (Patient/Doctor/Admin) with JWT
+- [x] Doctor slot creation & management
+- [x] Patient appointment booking & viewing
+- [x] Doctor views their patient appointments
+- [x] All API endpoints protected and tested
+
+### **Next Up (Phase 4+)**
+- Admin interfaces (approve doctors, manage users & appointments)
+- Appointment status workflows (confirm, cancel, complete)
+- Notifications (email/SMS)
+- Dashboard analytics & UI enhancements
 
 ---
 
@@ -8,22 +30,21 @@
 
 ```
 MediSync/
-├─ client/         # React + Vite + Tailwind frontend (Patient/Doctor/Admin UI)
-├─ server/         # Node.js + Express + Prisma backend (API & business logic)
-│  ├─ src/         
+├─ client/          # React + Vite + Tailwind frontend
+├─ server/          # Node.js + Express + Prisma backend
+│  ├─ src/
 │  │  ├─ controllers/
 │  │  ├─ middleware/
 │  │  ├─ routes/
 │  │  ├─ utils/
-│  │  ├─ app.js
-│  │  └─ server.js
-│  ├─ .env
-│  └─ prisma/
-│      ├─ schema.prisma
-│      └─ (migrations…)
+│  │  └─ ...
+│  ├─ prisma/
+│  │  ├─ schema.prisma
+│  │  └─ migrations/
+│  └─ .env
 ├─ infra/
-│  └─ docker-compose.yml    # PostgreSQL via Docker
-├─ package.json             # Monorepo yarn/npm workspaces
+│  └─ docker-compose.yml
+├─ package.json
 └─ README.md
 ```
 
@@ -32,156 +53,170 @@ MediSync/
 ## ⚡ Tech Stack
 
 - **Frontend:** React, Vite, Tailwind CSS
-- **Backend:** Node.js, Express, Prisma ORM, bcrypt, JWT
-- **Database:** PostgreSQL (local Docker container)
-- **Dev tooling:** nodemon, concurrently, express-validator
+- **Backend:** Node.js, Express, Prisma ORM, bcrypt (hashing), JWT (authentication)
+- **Database:** PostgreSQL (Docker Compose)
+- **Dev:** Nodemon, concurrently, express-validator
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. **Clone & Install**
+### 1. **Clone & Install Dependencies**
 
-```bash
+```sh
 git clone <your-repo-url> MediSync
 cd MediSync
-npm install           # Installs all workspaces (client & server)
+npm install
 ```
 
 ### 2. **Configure Environment**
 
-- Copy & fill in required `.env` files:
-
-**`server/.env`**
+**server/.env**
 ```env
 NODE_ENV=development
 PORT=5000
 DATABASE_URL="postgresql://medisync_user:medisync_pass@localhost:5433/medisync_db?schema=public"
-JWT_SECRET=replace_this_with_a_random_secret
+JWT_SECRET=your-jwt-secret
 FRONTEND_URL=http://localhost:5173
 ```
 
-**`client/.env`**
+**client/.env**
 ```env
 VITE_API_URL=http://localhost:5000/api/v1
 ```
 
-### 3. **Start Database (Postgres via Docker Compose)**
+### 3. **Start Database**
 
-```bash
+```sh
 docker compose -f infra/docker-compose.yml up -d
 ```
-> ⚠️ If you get "port already allocated", edit `docker-compose.yml` to use an open port (e.g. `5433:5432`) and update your `.env`.
 
-### 4. **Apply Prisma Database Schema & Migrations**
+### 4. **Run Migrations & Generate Prisma Client**
 
-```bash
+From **root** (preferred):
+```sh
 npm run prisma:generate -w server
 npm run prisma:migrate -w server
 ```
-
-#### (Optional) Add demo rows to "Specialization" table:
-```bash
-npx prisma studio -w server    # Use web UI to add Cardiology, etc.
+Or from **server/** folder:
+```sh
+npm run prisma:generate
+npm run prisma:migrate
 ```
 
-### 5. **Start the Full Stack (Both Client & Server)**
+### 5. **Add Demo Specializations (Manual via Prisma Studio)**
 
-From project root:
-```bash
+```sh
+npx prisma studio -w server
+# Add `Cardiology`, `Dermatology`, etc.
+```
+
+### 6. **Start Both Client and Server**
+
+From root:
+```sh
 npm run dev
-# client:  http://localhost:5173
-# server:  http://localhost:5000/api/v1/health
+# Client:  http://localhost:5173/
+# Server:  http://localhost:5000/api/v1/health
 ```
 
 ---
 
-## 🔒 Phase 2: Authentication & Role-Based Access
+## 🔒 API Overview
 
-### ✏️ Account Registration
-- `/api/v1/auth/register` — Register as patient or doctor
-- `/api/v1/auth/login`    — Login, receive JWT token
-- `/api/v1/auth/me`       — Get current user (JWT required)
+### **Auth Endpoints**
+- `POST /api/v1/auth/register`  — Patient/doctor registration
+- `POST /api/v1/auth/login`     — Login and receive JWT
+- `GET /api/v1/auth/me`         — Authenticated user details
 
-### 🩺 Doctor registration requires:
-- `name`, `email`, `password`, `role=DOCTOR`
-- `doctor.licenseNo`, `doctor.specializationId`
+### **Doctor Endpoints**
+- `POST /api/v1/slots`          — Create available slots **(DOCTOR)**
+- `GET /api/v1/slots/mine`      — List my slots  **(DOCTOR)**
+- `GET /api/v1/appointments/my-patients` — My patient appointments **(DOCTOR)**
 
-### 👤 Patient registration requires:
-- `name`, `email`, `password`, `role=PATIENT` (default)
+### **Patient Endpoints**
+- `GET /api/v1/slots/doctor/:doctorId`   — See a doctor’s available slots **(PATIENT)**
+- `POST /api/v1/appointments/book`       — Book appointment **(PATIENT)**
+- `GET /api/v1/appointments/mine`        — My appointments **(PATIENT)**
 
-### 🗝️ Protected/API access
-- To access protected endpoints:  
-  Use `Authorization: Bearer <token>` header with your JWT.
+### **Admin (Phase 4+)**
+- (Coming soon)
 
 ---
 
-## 🧪 Example API Usage
+## 🧪 Example Requests
 
-**Register Patient**
+### **Register Patient**
 ```http
 POST /api/v1/auth/register
-Content-Type: application/json
 {
-  "name": "Vishu",
+  "name": "Patient One",
   "email": "patient@example.com",
-  "password": "changeme"
+  "password": "secret123"
 }
 ```
 
-**Register Doctor**
+### **Register Doctor**
 ```http
 POST /api/v1/auth/register
-Content-Type: application/json
 {
-  "name": "Dr. Sinha",
-  "email": "drsinha@example.com",
-  "password": "changeme",
+  "name": "Dr. Jane Doe",
+  "email": "doctor@example.com",
+  "password": "secret123",
   "role": "DOCTOR",
   "doctor": {
-    "licenseNo": "ABC-123X",
-    "specializationId": 1     // (get from Specializations list)
+    "licenseNo": "DOC-001",
+    "specializationId": 1
   }
 }
 ```
 
-**Login**
+### **Login**
 ```http
 POST /api/v1/auth/login
 {
-  "email": "drsinha@example.com",
-  "password": "changeme"
+  "email": "doctor@example.com",
+  "password": "secret123"
 }
 ```
 
-**Get Current User (JWT required)**
+### **Create Slots (Doctor)**
 ```http
-GET /api/v1/auth/me
-Authorization: Bearer <your-jwt-token>
+POST /api/v1/slots
+Authorization: Bearer <JWT>
+{
+  "slots": [
+    { "startTime": "2026-04-08T09:00:00Z", "endTime": "2026-04-08T09:30:00Z" },
+    { "startTime": "2026-04-08T10:00:00Z", "endTime": "2026-04-08T10:30:00Z" }
+  ]
+}
+```
+
+### **Book Appointment (Patient)**
+```http
+POST /api/v1/appointments/book
+Authorization: Bearer <JWT>
+{
+  "slotId": 1
+}
 ```
 
 ---
 
-## 🛠️ Run Backend or Frontend ONLY
+## ⏭️ Roadmap
 
-- **Server (API):**
-  ```
-  cd server
-  npm run dev
-  ```
-- **Client (React):**
-  ```
-  cd client
-  npm run dev
-  ```
+- [ ] Phase 4: Admin panel, analytics, doctor approval/rejection
+- [ ] Appointment status workflow (confirm/cancel)
+- [ ] Notifications (email/SMS)
+- [ ] Modern frontend dashboards
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork the repo
-2. Open a branch (`feature/xyz`)
-3. Open a PR
+1. Fork and branch (`feature/my-feature`)
+2. Open PR
+3. Follow code style in client/server
 
 ---
 
@@ -197,4 +232,5 @@ MIT
 
 ---
 
-PRs and suggestions welcome!
+PRs, feedback, and enhancements welcome!
+- MediSync Booking Milestone 1/10: feat(prisma): add Slot and Appointment models with status enums to schema

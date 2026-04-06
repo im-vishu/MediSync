@@ -28,17 +28,50 @@ model User {
   doctor    Doctor?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  appointments Appointment[] @relation("PatientAppointments")
 }
 
 model Doctor {
-  id               Int              @id @default(autoincrement())
-  licenseNo        String           @unique
-  specialization   Specialization   @relation(fields: [specializationId], references: [id])
+  id               Int      @id @default(autoincrement())
+  licenseNo        String   @unique
+  specialization   Specialization @relation(fields: [specializationId], references: [id])
   specializationId Int
-  user             User             @relation(fields: [userId], references: [id])
-  userId           Int              @unique
-  approved         Boolean          @default(false)
-  createdAt        DateTime         @default(now())
+  user             User     @relation(fields: [userId], references: [id])
+  userId           Int      @unique
+  approved         Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  slots            Slot[]
+  appointments     Appointment[] @relation("DoctorAppointments")
+}
+
+model Slot {
+  id        Int      @id @default(autoincrement())
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  doctorId  Int
+  startTime DateTime
+  endTime   DateTime
+  booked    Boolean  @default(false)
+  appointment Appointment?
+  createdAt DateTime @default(now())
+}
+
+model Appointment {
+  id        Int      @id @default(autoincrement())
+  slot      Slot     @relation(fields: [slotId], references: [id])
+  slotId    Int      @unique
+  patient   User     @relation("PatientAppointments", fields: [patientId], references: [id])
+  patientId Int
+  doctor    Doctor   @relation("DoctorAppointments", fields: [doctorId], references: [id])
+  doctorId  Int
+  status    AppointmentStatus @default(PENDING)
+  createdAt DateTime @default(now())
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
 }
 
 model HealthCheck {
