@@ -3,6 +3,10 @@ import { body, validationResult } from "express-validator";
 import { PrismaClient } from "@prisma/client";
 import { auth } from "../middleware/auth.js";
 
+import adminRoutes from './admin.js';
+
+
+
 const router = Router();
 const prisma = new PrismaClient();
 
@@ -53,5 +57,7 @@ router.get("/doctor/:doctorId", auth(), async (req, res) => {
   });
   res.json({ slots });
 });
+
+router.use("/admin", adminRoutes);
 
 export default router;
