@@ -62,3 +62,45 @@ router.get("/my-patients", auth("DOCTOR"), async (req, res) => {
 });
 
 export default router;
+
+// Doctor or admin changes appointment status
+router.post(
+  "/:appointmentId/status",
+  auth(), // Must be authenticated, we'll check role inside
+  body("status").isIn(["CONFIRMED", "CANCELLED", "COMPLETED"]),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+    const appointmentId = Number(req.params.appointmentId);
+    const { status } = req.body;
+    const user = req.user;
+
+    // Only admin, or doctor for their own appointment
+    const appointment = await prisma.appointment.findUnique({
+      where: { id: appointmentId },
+      include: { doctor: { include: { user: true } } },
+    });
+    if (!appointment) return res.status(404).json({ error: "Appointment not found" });
+
+    if (
+      user.role !== "ADMIN" &&
+      !(user.role === "DOCTOR" && appointment.doctor.userId === user.id)
+    ) {
+      return res.status(403).json({ error: "Not allowed" });
+    }
+
+    // Update status
+    const updated = await prisma.appointment.update({
+      where: { id: appointmentId },
+      data: { status },
+    });
+
+    // Optionally, if status is CANCELLED, free the slot for rebooking
+    if (status === "CANCELLED") {
+      await prisma.slot.update({ where: { id: appointment.slotId }, data: { booked: false } });
+    }
+
+    res.json({ appointment: updated, message: `Status updated to ${status}` });
+  }
+);

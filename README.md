@@ -252,3 +252,5 @@ PRs, feedback, and enhancements welcome!
 - MediSync Booking Milestone 9/10: security(middleware): enforce strict RBAC on slot and appointment routes
 
 - MediSync Booking Milestone 10/10: docs: finalize README.md with Phase 3 architecture and Scheduling roadmap
+
+- MediSync Governance Milestone 1/3: feat(server): implement Admin-only Doctor Approval and rejection logic

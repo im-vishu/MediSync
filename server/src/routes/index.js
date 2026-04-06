@@ -5,6 +5,8 @@ import { PrismaClient } from "@prisma/client";
 import slotRoutes from "./slot.js";
 import appointmentRoutes from "./appointment.js";
 
+import adminRoutes from "./admin.js";
+
 const router = Router();
 const prisma = new PrismaClient();
 
@@ -12,6 +14,8 @@ router.use("/auth", authRoutes);
 
 router.use("/slots", slotRoutes);
 router.use("/appointments", appointmentRoutes);
+
+router.use("/admin", adminRoutes);
 
 router.get("/health", async (_req, res) => {
   try {
