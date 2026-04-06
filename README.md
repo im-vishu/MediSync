@@ -248,3 +248,5 @@ PRs, feedback, and enhancements welcome!
 - MediSync Booking Milestone 7/10: feat(server): implement GET /v1/appointments/mine for Patient history
 
 - MediSync Booking Milestone 8/10: feat(server): implement GET /v1/appointments/my-patients for Doctor dashboard
+
+- MediSync Booking Milestone 9/10: security(middleware): enforce strict RBAC on slot and appointment routes
