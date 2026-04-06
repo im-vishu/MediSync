@@ -234,3 +234,5 @@ MIT
 
 PRs, feedback, and enhancements welcome!
 - MediSync Booking Milestone 1/10: feat(prisma): add Slot and Appointment models with status enums to schema
+
+- MediSync Booking Milestone 2/10: build(prisma): apply migrations and re-generate Prisma Client for Phase 3
