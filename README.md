@@ -246,3 +246,5 @@ PRs, feedback, and enhancements welcome!
 - MediSync Booking Milestone 6/10: feat(server): implement POST /v1/appointments/book with atomic slot locking
 
 - MediSync Booking Milestone 7/10: feat(server): implement GET /v1/appointments/mine for Patient history
+
+- MediSync Booking Milestone 8/10: feat(server): implement GET /v1/appointments/my-patients for Doctor dashboard
